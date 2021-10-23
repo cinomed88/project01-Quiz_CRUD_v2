@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
+const SECRETCODE = "lucasGong"
 
 const userSchema = mongoose.Schema({
   name: {
@@ -23,7 +24,7 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: Number,
-    default: 0
+    default: 0 // 1: Admin, 0: normal user
   },
   image: String,
   token: {
@@ -61,12 +62,24 @@ userSchema.methods.comparePassword =  function(plainPassword, cb) {
 
 userSchema.methods.generateToken = function(cb) {
   const user = this
-  const token = jwt.sign(user._id.toHexString(), 'gongToken')
+  const token = jwt.sign(user._id.toHexString(), SECRETCODE)
   user.token = token
   user.save(function(err, user) {
     if(err) return cb(err)
     cb(null, user)
   })
+}
+
+userSchema.statics.findByToken = function(token, cb) {
+  const user = this
+
+  jwt.verify(token, SECRETCODE, function(err, decoded) {
+    user.findOne({ "_id": decoded, "token": token}, function(err, user) {
+      if(err) return cb(err)
+      cb(null, user)
+    })
+  })
+
 }
 
 const User = mongoose.model('User', userSchema)
