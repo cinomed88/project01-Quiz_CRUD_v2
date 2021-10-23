@@ -2,15 +2,14 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 const port = 3000
-const { DB_URI } = require('./config')
-// const DB_URI = 'mongodb+srv://lucaswgong:hihumi2301@cluster0.3kx5a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const config = require('./config/key')
 const mongoose = require('mongoose')
 const { User } = require('./models/User')
 
 app.use(bodyParser.urlencoded({entended: true}))
 app.use(bodyParser.json())
 
-mongoose.connect(DB_URI, { 
+mongoose.connect(config.mongoURI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   // useCreateIndex: true,
@@ -19,7 +18,7 @@ mongoose.connect(DB_URI, {
   .catch(err => console.log(err))
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello world!')
 })
 
 app.post('/register', (req, res) => {
