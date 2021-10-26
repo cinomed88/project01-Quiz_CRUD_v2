@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5000
 const config = require('./config/key')
 const mongoose = require('mongoose')
 const { User } = require('./models/User')
@@ -23,6 +23,10 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => {
   res.send('Hello world!')
+})
+
+app.get('/api/hello', (req, res) => {
+  res.send("Hello Lucas!")
 })
 
 app.post('/api/users/register', (req, res) => {
