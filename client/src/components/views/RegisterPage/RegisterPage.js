@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../../_actions/user_action'
+import { withRouter } from 'react-router-dom';
 
 function RegisterPage(props) {
   
@@ -25,7 +26,7 @@ function RegisterPage(props) {
   const onSubmitHandler = e => {
     e.preventDefault()
 
-    if(password != confirmPassword) {
+    if(password !== confirmPassword) {
       return alert('The passwords are not coincident')
     }
 
@@ -63,4 +64,4 @@ function RegisterPage(props) {
   )
 }
 
-export default RegisterPage
+export default withRouter(RegisterPage)

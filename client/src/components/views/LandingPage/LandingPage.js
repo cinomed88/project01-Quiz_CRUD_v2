@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom';
 
 function LandingPage(props) {
 
@@ -22,11 +23,13 @@ function LandingPage(props) {
                   width: '100%', height: '100vh' }}>
       <h1>Landing page</h1>
       <br/>
-      <button onClick={onLogoutHandler}>
-        Log Out
-      </button>
+      <div>
+        <button onClick={onLogoutHandler}>
+          Log Out
+        </button>
+      </div>
     </div>
   )
 }
 
-export default LandingPage
+export default withRouter(LandingPage)
