@@ -8,7 +8,7 @@ const quizSchema = mongoose.Schema({
     type: String,
   },
   choice: {
-    type: Array,
+    type: [String],
   }
 })
 

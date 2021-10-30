@@ -89,7 +89,11 @@ app.get('/api/v3/users/logout', auth, (req, res) => {
 })
 //---------------------- Quiz ---------------------------------------
 app.get('/api/v3/quizzes', (req, res) => {
-
+  Quiz.find(function(err, quizzes){
+    if(err) return res.status(500).send({ quizGetAllSuccess: false, err});
+    if(!quizzes) return res.status(404).send({ quizGetAllSuccess: false, error: 'No quiz data to retrieve!'});
+    res.status(200).json({ quizGetAllSuccess: true, data: quizzes});
+  })
 })
 
 app.post('/api/v3/quizzes', (req, res) => {
@@ -100,12 +104,21 @@ app.post('/api/v3/quizzes', (req, res) => {
   })
 })
 
-app.put('/api/v3/quizzes', (req, res) => {
-  
-})
+app.put('/api/v3/quizzes/', (req, res) => {
+  Quiz.updateOne({ _id: req.query._id }, { $set: req.body }, function(err, result){
+    if(err) return res.status(500).json({ quizPutSuccess: false, err});
+    if(!result.acknowledged) return res.status(404).json({ quizPutSuccess: false, error: 'No quiz data to update!'});
+    return res.status(200).json({ quizPutSuccess: true});
+  })
+});
 
 app.delete('/api/v3/quizzes', (req, res) => {
-  
+  Quiz.deleteOne({ _id: req.query._id }, function(err, result){
+    if(err) return res.status(500).json({ quizDeleteSuccess: false, err});
+    console.log("result", result)
+    if(result.deleteCount == 0) return res.status(404).json({ quizDeleteSuccess: false, error: 'No quiz data to delete!'});
+    return res.status(200).json({ quizDeleteSuccess: true, err})
+  })  
 })
 
 app.listen(port, () => {
