@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cinomed88/Auth.git"
+    "url": "git+https://github.com/cinomed88/project01-Quiz_CRUD_v2.git"
   },
   "author": "Lucas Gong",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cinomed88/Auth/issues"
+    "url": "https://github.com/cinomed88/project01-Quiz_CRUD_v2/issues"
   },
-  "homepage": "https://github.com/cinomed88/Auth#readme",
+  "homepage": "https://github.com/cinomed88/project01-Quiz_CRUD_v2#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
@@ -26,7 +26,8 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "update": "^0.7.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"

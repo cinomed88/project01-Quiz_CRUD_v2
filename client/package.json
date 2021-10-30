@@ -17,6 +17,7 @@
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.4.0",
     "save": "^2.4.0",
+    "update": "^0.7.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

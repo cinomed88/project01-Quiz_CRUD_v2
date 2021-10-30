@@ -5,6 +5,7 @@ const port = 5000
 const config = require('./config/key')
 const mongoose = require('mongoose')
 const { User } = require('./models/User')
+const { Quiz } = require('./models/Quiz')
 const cookieParser = require('cookie-parser')
 const { auth } = require('./middleware/auth')
 
@@ -25,11 +26,11 @@ app.get('/', (req, res) => {
   res.send('Hello world!')
 })
 
-app.get('/api/hello', (req, res) => {
-  res.send("Hello Lucas!")
+app.get('/api/v3/hello', (req, res) => {
+  res.send("Test!")
 })
-
-app.post('/api/users/register', (req, res) => {
+//---------------------- Authentication -------------------------
+app.post('/api/v3/users/register', (req, res) => {
   const user = new User(req.body)
   user.save((err, userInfo)=> {
     if(err) return res.json({ registerSuccess: false, err})
@@ -37,7 +38,7 @@ app.post('/api/users/register', (req, res) => {
   })
 })
 
-app.post('/api/users/login', (req, res) => {
+app.post('/api/v3/users/login', (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if(!user) {
       return res.json({
@@ -62,7 +63,7 @@ app.post('/api/users/login', (req, res) => {
 
 })
 
-app.get('/api/users/auth', auth, (req, res) => {
+app.get('/api/v3/users/auth', auth, (req, res) => {
   res.status(200).json({
     _id: req.user._id,
     isAdmin: req.user.role === 0 ? false : true,
@@ -75,7 +76,7 @@ app.get('/api/users/auth', auth, (req, res) => {
   })
 })
 
-app.get('/api/users/logout', auth, (req, res) => {
+app.get('/api/v3/users/logout', auth, (req, res) => {
   User.findOneAndUpdate({_id: req.user._id },
     {token: ""},
     (err, user) => {
@@ -84,8 +85,27 @@ app.get('/api/users/logout', auth, (req, res) => {
         logoutSuccess: true
       })
     }
-
   )
+})
+//---------------------- Quiz ---------------------------------------
+app.get('/api/v3/quizzes', (req, res) => {
+
+})
+
+app.post('/api/v3/quizzes', (req, res) => {
+  const quiz = new Quiz(req.body)
+  quiz.save((err, quizInfo)=> {
+    if(err) return res.json({ quizPostSuccess: false, err})
+    return res.status(200).json({ quizPostSuccess: true })
+  })
+})
+
+app.put('/api/v3/quizzes', (req, res) => {
+  
+})
+
+app.delete('/api/v3/quizzes', (req, res) => {
+  
 })
 
 app.listen(port, () => {
