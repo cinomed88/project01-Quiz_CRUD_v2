@@ -4,11 +4,9 @@ const app = express()
 const port = 5000
 const config = require('./config/key')
 const mongoose = require('mongoose')
-const { User } = require('./models/User')
-const { Quiz } = require('./models/Quiz')
 const cookieParser = require('cookie-parser')
-const { auth } = require('./middleware/auth')
-
+const { quizRouter } = require('./routes/quizRouter')
+const { userRouter } = require('./routes/userRouter')
 
 app.use(bodyParser.urlencoded({entended: true}))
 app.use(bodyParser.json())
@@ -26,100 +24,11 @@ app.get('/', (req, res) => {
   res.send('Hello world!')
 })
 
-app.get('/api/v3/hello', (req, res) => {
-  res.send("Test!")
-})
-//---------------------- Authentication -------------------------
-app.post('/api/v3/users/register', (req, res) => {
-  const user = new User(req.body)
-  user.save((err, userInfo)=> {
-    if(err) return res.json({ registerSuccess: false, err})
-    return res.status(200).json({ registerSuccess: true })
-  })
-})
+//---------------------- User Auth -------------------------
+app.use('/api/v3/users', userRouter)
 
-app.post('/api/v3/users/login', (req, res) => {
-  User.findOne({ email: req.body.email }, (err, user) => {
-    if(!user) {
-      return res.json({
-        loginSuccess: false,
-        message: "No user having this email."
-      })
-    }
-
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if(!isMatch) return res.json({ loginSuccess: false, message: "Wrong password!"})
-
-      user.generateToken((err, user) => {
-        if(err) return res.status(400).send(err)
-
-        res.cookie("x_auth", user.token)
-        .status(200)
-        .json({ loginSuccess: true, userId: user._id})
-      })
-    })
-
-  })
-
-})
-
-app.get('/api/v3/users/auth', auth, (req, res) => {
-  res.status(200).json({
-    _id: req.user._id,
-    isAdmin: req.user.role === 0 ? false : true,
-    isAuth: true,
-    email: req.user.email,
-    name: req.user.name,
-    lastname: req.user.lastname,
-    role: req.user.role,
-    image: req.user.image
-  })
-})
-
-app.get('/api/v3/users/logout', auth, (req, res) => {
-  User.findOneAndUpdate({_id: req.user._id },
-    {token: ""},
-    (err, user) => {
-      if(err) return res.json({ logoutSuccess: false, err })
-      return res.status(200).send({
-        logoutSuccess: true
-      })
-    }
-  )
-})
-//---------------------- Quiz ---------------------------------------
-app.get('/api/v3/quizzes', (req, res) => {
-  Quiz.find(function(err, quizzes){
-    if(err) return res.status(500).send({ quizGetAllSuccess: false, err});
-    if(!quizzes) return res.status(404).send({ quizGetAllSuccess: false, error: 'No quiz data to retrieve!'});
-    res.status(200).json({ quizGetAllSuccess: true, data: quizzes});
-  })
-})
-
-app.post('/api/v3/quizzes', (req, res) => {
-  const quiz = new Quiz(req.body)
-  quiz.save((err, quizInfo)=> {
-    if(err) return res.json({ quizPostSuccess: false, err})
-    return res.status(200).json({ quizPostSuccess: true })
-  })
-})
-
-app.put('/api/v3/quizzes/', (req, res) => {
-  Quiz.updateOne({ _id: req.query._id }, { $set: req.body }, function(err, result){
-    if(err) return res.status(500).json({ quizPutSuccess: false, err});
-    if(!result.acknowledged) return res.status(404).json({ quizPutSuccess: false, error: 'No quiz data to update!'});
-    return res.status(200).json({ quizPutSuccess: true});
-  })
-});
-
-app.delete('/api/v3/quizzes', (req, res) => {
-  Quiz.deleteOne({ _id: req.query._id }, function(err, result){
-    if(err) return res.status(500).json({ quizDeleteSuccess: false, err});
-    console.log("result", result)
-    if(result.deleteCount == 0) return res.status(404).json({ quizDeleteSuccess: false, error: 'No quiz data to delete!'});
-    return res.status(200).json({ quizDeleteSuccess: true, err})
-  })  
-})
+//---------------------- Quiz ------------------------------
+app.use('/api/v3/quizzes', quizRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
