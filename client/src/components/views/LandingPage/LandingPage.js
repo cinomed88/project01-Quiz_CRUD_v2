@@ -4,13 +4,13 @@ import { withRouter } from 'react-router-dom';
 
 function LandingPage(props) {
 
-  useEffect(() => {
-    axios.get('/api/hello')
-    .then( res => console.log(res.data))
-  }, [])
+  // useEffect(() => {
+  //   axios.get('/api/v3/hello')
+  //   .then( res => console.log(res.data))
+  // }, [])
 
   const onLogoutHandler = () => {
-    axios.get('/api/users/logout')
+    axios.get('/api/v3/users/logout')
       .then(res => {
         console.log(res.data)
         if(res.data.logoutSuccess) {
