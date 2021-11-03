@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import reactIcon from '../../../imgs/react.png';
 import nodejsIcon from '../../../imgs/nodejs.png';
@@ -9,7 +7,7 @@ function LandingPage(props) {
 
   return (
     <div className="App">
-      <h2 style={{margin:"10%"}}>This is a simple quiz app using React, Node.js, and MongoDB.</h2>
+      <h2 style={{margin:"10%"}}>This is a simple quiz app using React, Node.js, and mongoDB.</h2>
                   
       <div className="img-wrap">
         <img className="reactIcon" src={reactIcon} alt="react Icon" />
