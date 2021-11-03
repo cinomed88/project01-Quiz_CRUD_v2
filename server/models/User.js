@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken')
 const SECRETCODE = "lucasGong"
 
 const userSchema = mongoose.Schema({
-  name: {
+  firstname: {
     type: String,
-    minlength: 5
+    maxlength: 30
   },
   email: {
     type: String,
@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
   },
   lastname: {
     type: String,
-    maxlength: 50
+    maxlength: 30
   },
   role: {
     type: Number,

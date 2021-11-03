@@ -72,9 +72,9 @@ const NavBar = () => {
                   <NavBarBtn to="/" value="Home"/>
                   <NavBarBtn to="/admin" value="Admin"/>
                   <NavBarBtn to="/student" value="Student"/>
-                  <NavBarBtn to="/login" value="LogIn"/>
-                  <NavBarBtn to="/logout" value="LogOut"/>
-                  <NavBarBtn to="/register" value="Register"/>
+                  <NavBarBtn to="/login" value="Sign In"/>
+                  <NavBarBtn to="/logout" value="Sign Out"/>
+                  <NavBarBtn to="/register" value="Sign Up"/>
               </span>
           </Toolbar>
       </AppBar>
