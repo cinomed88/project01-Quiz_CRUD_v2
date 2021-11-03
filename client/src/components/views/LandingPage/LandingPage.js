@@ -1,32 +1,22 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
+import reactIcon from '../../../imgs/react.png';
+import nodejsIcon from '../../../imgs/nodejs.png';
+import mongodbIcon from '../../../imgs/mongodb.png';
 
 function LandingPage(props) {
 
-  // useEffect(() => {
-  //   axios.get('/api/v3/hello')
-  //   .then( res => console.log(res.data))
-  // }, [])
-
-  const onLogoutHandler = () => {
-    axios.get('/api/v3/users/logout')
-      .then(res => {
-        console.log(res.data)
-        if(res.data.logoutSuccess) {
-          props.history.push('/login')
-      }})
-  }
-
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',
-                  width: '100%', height: '100vh' }}>
-      <h1>Landing page</h1>
-      <br/>
-      <div>
-        <button onClick={onLogoutHandler}>
-          Log Out
-        </button>
+    <div className="App">
+      <h2 style={{margin:"10%"}}>This is a simple quiz app using React, Node.js, and MongoDB.</h2>
+                  
+      <div className="img-wrap">
+        <img className="reactIcon" src={reactIcon} alt="react Icon" />
+        <span>+</span>
+        <img className="nodeIcon" src={nodejsIcon} alt="Nodejs Icon" />
+        <span>+</span>
+        <img className="mongodbIcon" src={mongodbIcon} alt="MongoDB Icon" />
       </div>
     </div>
   )

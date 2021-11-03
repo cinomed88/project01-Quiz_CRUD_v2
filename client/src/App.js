@@ -1,3 +1,4 @@
+import "./App.css";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import LandingPage from './components/views/LandingPage/LandingPage';
 import AdminPage from './components/views/AdminPage/AdminPage';
