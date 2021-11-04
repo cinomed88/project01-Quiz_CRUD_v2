@@ -40,7 +40,7 @@ const NavBar = () => {
           </List>
           <Divider />
           <List>
-              {['LogIn', 'LogOut', 'Register'].map((text, index) => (
+              {['Sign In', 'Sign Out', 'Sign Up'].map((text, index) => (
                   <ListItemLink 
                       to={index % 3 === 0 ? "/login" : index === 1 ? "/logout" : "/register"} 
                       primary={text} 
