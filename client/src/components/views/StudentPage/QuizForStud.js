@@ -3,7 +3,6 @@ import { Button, Radio, RadioGroup, FormControl, FormControlLabel } from "@mui/m
 import QuizReview from "./QuizReview";
 
 const QuizForStud = (props) => {
-  console.log(props.data)
   const style = {
     textAlign: 'left',
     border: '3px solid black',
@@ -31,7 +30,6 @@ const QuizForStud = (props) => {
     if (current === props.data.length - 1)
       setBtnText('Finish');
   };
-
   if (current < props.data.length){
     let index = 0;
     const list =  props.data[current].choice.map(

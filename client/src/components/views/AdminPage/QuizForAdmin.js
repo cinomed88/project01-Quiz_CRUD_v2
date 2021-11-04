@@ -29,7 +29,7 @@ const QuizForAdmin = (props) => {
 
   if (editable) {
     let index = 0;
-    const list =  props.data.choiceDesc.map(
+    const list =  props.data.choice.map(
       choice => {
         index++;
         return (

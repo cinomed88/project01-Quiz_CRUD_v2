@@ -1,29 +1,29 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux'
+import { readAllQuiz } from '../../../_actions/quiz_action'
 import QuizForStud from './QuizForStud';
 
 const StudentPage = () => {
-  const [quizData, setQuizData] = useState(null);
+  const dispatch = useDispatch("")
+
+  // const [quizData, setQuizData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchInfo = () => {
-      try {
-        setError(null);
-        setLoading(true);
-        axios.get('/api/v3/quizzes', { withCredentials: true }).then((res) => {
-          if(res.data.quizGetAllSuccess){
-            setQuizData(res.data.data);
-          } else {
-            console.log(res.data.error)
-          }
-        });
-      } catch (e) {
-          setError(e);
-      };
-      setLoading(false);
+  const quizData = useSelector(state => state.quiz);
+
+  const fetchInfo = () => {
+    try {
+      setError(null);
+      setLoading(true);
+      dispatch(readAllQuiz())
+    } catch (e) {
+        setError(e);
     };
+    setLoading(false);
+  };
+
+  useEffect(() => {    
     fetchInfo();
   }, []);
 
@@ -37,7 +37,7 @@ const StudentPage = () => {
       </div>
       {
       quizData
-      ? <QuizForStud data={quizData}/>
+      ? <QuizForStud data={quizData.quiz}/>
       : <div>No quiz is created!</div>
       }
     </div>

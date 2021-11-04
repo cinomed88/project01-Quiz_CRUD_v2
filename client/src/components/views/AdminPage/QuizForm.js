@@ -20,7 +20,7 @@ const QuizForm = (props) => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    props.addData({question: question, answer: answer, choiceDesc: [c1, c2, c3, c4]});
+    props.addData({question: question, answer: answer, choice: [c1, c2, c3, c4]});
     setQuiz({question: '', answer: '', c1:'', c2:'', c3:'', c4:''});
   };
 

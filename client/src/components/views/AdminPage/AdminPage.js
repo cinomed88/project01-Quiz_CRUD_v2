@@ -30,33 +30,32 @@ const AdminPage = () => {
 
   const addData = (data) => {
     if (!data) console.log("data was not input yet.");
-    setQuizData(quizData.concat({ ...data }));
+    // setQuizData(quizData.concat({ ...data }));
     axios.post('/api/v3/quizzes', {
       question: data.question,
       answer: data.answer,
       choice: data.choice     
     }, { withCredentials: true })
-    .then((res) => console.log(res))
+    .then((res) => console.log("addData", res))
     .catch((err) => console.log(err));
   };
 
   const updateData = (id, data) => {
-    setQuizData(quizData.map(info => id === info.id ? { ...info, ...data } : info));
-    axios.put('/api/v3/quizzes', {
-      id: id,
-      question: data.question,
-      answer: data.answer,
-      choiceDesc: data.choiceDesc    
-    }, { withCredentials: true })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    // setQuizData(quizData.map(info => id === info.id ? { ...info, ...data } : info));
+    // axios.put('/api/v3/quizzes', {
+    //   question: data.question,
+    //   answer: data.answer,
+    //   choice: data.choice    
+    // }, { withCredentials: true })
+    // .then((res) => console.log(res))
+    // .catch((err) => console.log(err));
   };
 
   const removeData = (id) => {
-    setQuizData(quizData.filter(info => info.id !== id));
-    axios.delete('/api/v3/quizzes', { data: id }, { withCredentials: true })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    // setQuizData(quizData.filter(info => info.id !== id));
+    // axios.delete('/api/v3/quizzes', { data: id }, { withCredentials: true })
+    // .then((res) => console.log(res))
+    // .catch((err) => console.log(err));
   };
 
   if (loading) return <div className="App">Now Loading...</div>;

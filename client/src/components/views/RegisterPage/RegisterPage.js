@@ -50,7 +50,6 @@ function RegisterPage(props) {
       firstname: userName.firstName,
       lastname: userName.lastName
     }
-    console.log(body)
     dispatch(registerUser(body))
       .then(res => {
         if(res.payload.registerSuccess) {
