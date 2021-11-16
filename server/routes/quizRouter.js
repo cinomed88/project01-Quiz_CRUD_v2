@@ -21,8 +21,8 @@ quizRouter.post('/', (req, res) => {
 })
 
 // Update a quiz by id
-quizRouter.put('/', (req, res) => {
-  Quiz.updateOne({ _id: req.query._id }, { $set: req.body }, function(err, result){
+quizRouter.put('/:id', (req, res) => {
+  Quiz.updateOne({ _id: req.params.id }, { $set: req.body }, function(err, result){
     if(err) return res.status(500).json({ quizPutSuccess: false, error: err});
     if(!result.acknowledged) return res.status(404).json({ quizPutSuccess: false, error: 'No quiz data to update!'});
     return res.status(200).json({ quizPutSuccess: true});
@@ -30,11 +30,11 @@ quizRouter.put('/', (req, res) => {
 });
 
 // Delete a quiz by id
-quizRouter.delete('/', (req, res) => {
-  Quiz.deleteOne({ _id: req.query._id }, function(err, result){
+quizRouter.delete('/:id', (req, res) => {
+  Quiz.deleteOne({ _id: req.params.id }, function(err, result){
     if(err) return res.status(500).json({ quizDeleteSuccess: false, error: err});
-    console.log("result", result)
-    if(result.deleteCount == 0) return res.status(404).json({ quizDeleteSuccess: false, error: 'No quiz data to delete!'});
+    // console.log("result", result)
+    if(result.deletedCount == 0) return res.status(404).json({ quizDeleteSuccess: false, error: 'No quiz data to delete!'});
     return res.status(200).json({ quizDeleteSuccess: true, error: err})
   })  
 })

@@ -14,7 +14,8 @@ export default function (state=null, action) {
       return { ...state}
   
     case DELETE_QUIZ:
-      return { ...state}
+      const  id = action.payload.id;
+      return { ...state, quiz: state.quiz.filter(item => item.id != id)}
   
     default:
       return state;

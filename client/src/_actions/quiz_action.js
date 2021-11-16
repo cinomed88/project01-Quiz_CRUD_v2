@@ -11,8 +11,8 @@ export function readAllQuiz() {
   }
 }
 
-export function createQuiz(dataToSubmit) {
-  const request = axios.post('/api/v3/quizzes', dataToSubmit)
+export function createQuiz(item) {
+  const request = axios.post('/api/v3/quizzes', item)
     .then(res => res.data)
 
   return {
@@ -21,20 +21,23 @@ export function createQuiz(dataToSubmit) {
   }
 }
 
-export function updateQuiz(dataToSubmit) {
-  const request = axios.update('/api/v3/quizzes', dataToSubmit)
+export function updateQuiz(item) {
+  console.log("action update", item)
+  const request = axios.put(`/api/v3/quizzes/${item.id}`, {
+    question: item.question,
+    answer: item.answer,
+    choice: item.choice
+  })
     .then(res => res.data)
-
   return {
     type: UPDATE_QUIZ,
     payload: request
   }
 }
 
-export function deleteQuiz(dataToSubmit) {
-  const request = axios.delete('/api/v3/quizzes', dataToSubmit)
+export function deleteQuiz(id) {
+  const request = axios.delete(`/api/v3/quizzes/${id}`)
     .then(res => res.data)
-
   return {
     type: DELETE_QUIZ,
     payload: request
