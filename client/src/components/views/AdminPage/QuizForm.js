@@ -38,13 +38,13 @@ const QuizForm = (props) => {
         />
       </h3>
       <RadioGroup name="answer" value={answer} onChange={onChangeInput}>
-        <FormControlLabel value="0" control={<Radio />} style={{margin: 2}} 
-          label={<Input placeholder="Describe a choice." name="c1" value={c1} onChange={onChangeInput}/>}/>
         <FormControlLabel value="1" control={<Radio />} style={{margin: 2}} 
-          label={<Input placeholder="Describe a choice." name="c2" value={c2} onChange={onChangeInput}/>}/>
+          label={<Input placeholder="Describe a choice." name="c1" value={c1} onChange={onChangeInput}/>}/>
         <FormControlLabel value="2" control={<Radio />} style={{margin: 2}} 
-          label={<Input placeholder="Describe a choice." name="c3" value={c3} onChange={onChangeInput}/>}/>
+          label={<Input placeholder="Describe a choice." name="c2" value={c2} onChange={onChangeInput}/>}/>
         <FormControlLabel value="3" control={<Radio />} style={{margin: 2}} 
+          label={<Input placeholder="Describe a choice." name="c3" value={c3} onChange={onChangeInput}/>}/>
+        <FormControlLabel value="4" control={<Radio />} style={{margin: 2}} 
           label={<Input placeholder="Describe a choice." name="c4" value={c4} onChange={onChangeInput}/>}/>           
       </RadioGroup>
       <div style={{margin:10, textAlign: "right"}}>

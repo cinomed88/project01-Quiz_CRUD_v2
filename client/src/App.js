@@ -15,7 +15,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Auth(LandingPage, null)} />
-        <Route exact path="/admin" component = {Auth(AdminPage, true)}/>
+        <Route exact path="/admin" component = {Auth(AdminPage, true, true)}/>
         <Route exact path="/student" component = {Auth(StudentPage, true)}/>  
         <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route exact path="/logout" component={Auth(LogoutPage, true)} />

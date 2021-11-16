@@ -4,19 +4,19 @@ import { READALL_QUIZ, CREATE_QUIZ, UPDATE_QUIZ, DELETE_QUIZ } from '../_actions
 export default function (state=null, action) {
   switch (action.type){
     case READALL_QUIZ:
-      return { quiz: action.payload.data }
+      return {...state, quiz: action.payload.data }
 
     case CREATE_QUIZ:
-      return { ...state, createSuccess: action.payload }
+      return { ...state, quiz: action.payload.data }
 
     case UPDATE_QUIZ:
-      return { ...state, updateSuccess: action.payload }
+      return { ...state, quiz: action.payload.data }
   
     case DELETE_QUIZ:
-      return { ...state, deleteSuccess: action.payload }
+      return { ...state, quiz: action.payload.data }
   
     default:
-      return null;
+      return state;
 
   }
 }

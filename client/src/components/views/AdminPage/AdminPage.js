@@ -1,43 +1,35 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { readAllQuiz, createQuiz, updateQuiz, deleteQuiz } from '../../../_actions/quiz_action'
 import QuizForm from "./QuizForm";
 import QuizList from "./QuizList";
 
 const AdminPage = () => {
-  const [quizData, setQuizData] = useState(null);
+  const dispatch = useDispatch();
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const quizData = useSelector(state => state.quiz);
   
-   useEffect(() => {
+  const fetchInfo = () => {
     try {
       setError(null);
       setLoading(true);
-      axios.get('/api/v3/quizzes')
-        .then((res) => {
-          if(res.data.quizGetAllSuccess){
-            setQuizData(res.data.data);
-          } else {
-            console.log(res.data.error)
-          }          
-        }, { withCredentials: true }
-      );
+      dispatch(readAllQuiz())
     } catch (e) {
-      console.log(e)
-      setError(e);
-    }
+        setError(e);
+    };
     setLoading(false);
+  };
+
+  useEffect(() => {    
+    fetchInfo();
   }, []);
 
   const addData = (data) => {
     if (!data) console.log("data was not input yet.");
-    // setQuizData(quizData.concat({ ...data }));
-    axios.post('/api/v3/quizzes', {
-      question: data.question,
-      answer: data.answer,
-      choice: data.choice     
-    }, { withCredentials: true })
-    .then((res) => console.log("addData", res))
-    .catch((err) => console.log(err));
+    console.log("inputData for create", data)
+    dispatch(createQuiz(data))
   };
 
   const updateData = (id, data) => {
@@ -71,7 +63,7 @@ const AdminPage = () => {
       </div>
       {
         quizData
-        ? <QuizList data={quizData} removeData={removeData} updateData={updateData}/>
+        ? <QuizList data={quizData.quiz} removeData={removeData} updateData={updateData}/>
         : <div></div>
       }
     </div>

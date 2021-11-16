@@ -6,10 +6,8 @@ import QuizForStud from './QuizForStud';
 const StudentPage = () => {
   const dispatch = useDispatch("")
 
-  // const [quizData, setQuizData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const quizData = useSelector(state => state.quiz);
 
   const fetchInfo = () => {
@@ -38,7 +36,7 @@ const StudentPage = () => {
       {
       quizData
       ? <QuizForStud data={quizData.quiz}/>
-      : <div>No quiz is created!</div>
+      : <div>No quiz is loaded!</div>
       }
     </div>
   );
