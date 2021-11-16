@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authUser } from '../_actions/user_action';
 
-export default function (SpecificComponent, option, adminRoute = null) {
+export default function auth(SpecificComponent, option, adminRoute = null) {
   /*option:
     null -> anyone
     true -> only login users

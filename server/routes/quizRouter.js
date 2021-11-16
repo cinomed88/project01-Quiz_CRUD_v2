@@ -14,6 +14,7 @@ quizRouter.get('/', (req, res) => {
 quizRouter.post('/', (req, res) => {
   const quiz = new Quiz(req.body)
   quiz.save((err, quizInfo)=> {
+    console.log("save router", quizInfo)
     if(err) return res.json({ quizPostSuccess: false, error: err})
     return res.status(200).json({ quizPostSuccess: true })
   })

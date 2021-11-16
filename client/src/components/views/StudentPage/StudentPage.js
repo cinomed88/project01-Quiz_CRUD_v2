@@ -34,7 +34,7 @@ const StudentPage = () => {
         <h1>Student Page</h1>
       </div>
       {
-      quizData
+      quizData && quizData.quiz
       ? <QuizForStud data={quizData.quiz}/>
       : <div>No quiz is loaded!</div>
       }

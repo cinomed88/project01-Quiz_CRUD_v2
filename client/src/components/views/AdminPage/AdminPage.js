@@ -9,7 +9,7 @@ const AdminPage = () => {
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const quizData = useSelector(state => state.quiz);
+  let quizData = useSelector(state => state.quiz);
   
   const fetchInfo = () => {
     try {
@@ -62,7 +62,7 @@ const AdminPage = () => {
         <QuizForm addData={addData} />
       </div>
       {
-        quizData
+        quizData && quizData.quiz
         ? <QuizList data={quizData.quiz} removeData={removeData} updateData={updateData}/>
         : <div></div>
       }
