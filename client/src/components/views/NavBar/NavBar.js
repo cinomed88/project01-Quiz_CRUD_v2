@@ -13,7 +13,7 @@ import ListItemLink from "./ListItemLink.js"
 
 const NavBar = () => {
   const mobileView = useMediaQuery({
-      query: "(min-width:650px)"
+      query: "(min-width:725px)"
   });
   const displayMode = mobileView ? "block" : "none"
 
