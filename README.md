@@ -3,9 +3,9 @@
  [Live](https://lucaswgong.com/portfolio/03/) <- Click
 
  - Developed an online quiz app using `React/Redux` on the client-side and provided `RESTful API` on the server-side.
- - Built the React/Redux using `Axios` to send HTTP requests, `React Router` for routing, and `Hooks API` to handle states.
- - Built CRUD API server for quiz and user data using `Node.js` and `Express.js`, and database using `MongoDB`.
- - Built authentication function.
+ - Built the React/Redux app using `Axios` to send HTTP requests, `React Router` for routing, and `Hooks API` to handle states.
+ - Built the CRUD API server for quiz and user data using `Node.js` and `Express.js`, and database using `MongoDB`.
+ - Built the authentication function.
  - Deployed via GlowHost using `cPanel`.
  
  ## Skills used : React/Redux, Node.js, Express.js, mongoDB, Material-UI
