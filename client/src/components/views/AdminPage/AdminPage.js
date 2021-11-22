@@ -34,12 +34,6 @@ const AdminPage = () => {
 
   const updateData = (data) => {
     dispatch(updateQuiz(data))
-    // setQuizData(quizData.map(info => id === info.id ? { ...info, ...data } : info));
-    // axios.put('/api/v3/quizzes', {
-    //   question: data.question,
-    //   answer: data.answer,
-    //   choice: data.choice    
-    // }, { withCredentials: true })
   };
 
   const removeData = (id) => {

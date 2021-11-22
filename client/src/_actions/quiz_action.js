@@ -23,7 +23,7 @@ export function createQuiz(item) {
 
 export function updateQuiz(item) {
   console.log("action update", item)
-  const request = axios.put(`/api/v3/quizzes/${item.id}`, {
+  const request = axios.put(`/api/v3/quizzes/${item._id}`, {
     question: item.question,
     answer: item.answer,
     choice: item.choice
@@ -31,7 +31,7 @@ export function updateQuiz(item) {
     .then(res => res.data)
   return {
     type: UPDATE_QUIZ,
-    payload: request
+    payload: {...item, __v: 0}
   }
 }
 
@@ -40,6 +40,6 @@ export function deleteQuiz(id) {
     .then(res => res.data)
   return {
     type: DELETE_QUIZ,
-    payload: request
+    payload: id
   }
 }

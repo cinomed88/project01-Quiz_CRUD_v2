@@ -32,7 +32,7 @@ const QuizForAdmin = (props) => {
   const handleSubmitUpdate = (e) => {  
     setEditable(!editable);  
     props.updateData({
-      id: props.data._id,
+      _id: props.data._id,
       question: question,
       answer: answer,
       choice: [c1, c2, c3, c4]
