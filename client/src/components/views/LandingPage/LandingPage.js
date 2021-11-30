@@ -7,7 +7,7 @@ function LandingPage(props) {
 
   return (
     <div className="App">
-      <h2 style={{margin:"10%"}}>This is a simple quiz app using React, Node.js, and mongoDB.</h2>
+      <h2 style={{margin:"10%"}}>This is a simple quiz app using React/Redux, Node.js, and mongoDB.</h2>
                   
       <div className="img-wrap">
         <img className="reactIcon" src={reactIcon} alt="react Icon" />

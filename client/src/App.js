@@ -9,9 +9,11 @@ import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import NavBar from './components/views/NavBar/NavBar';
 import Auth from './hoc/auth';
 
+const basePoint = '/portfolio/03';
+
 function App() {
   return (
-    <Router>
+    <Router basename={basePoint}>
       <NavBar />
       <Switch>
         <Route exact path="/" component={Auth(LandingPage, null)} />
