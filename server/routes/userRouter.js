@@ -49,7 +49,6 @@ userRouter.get('/auth', auth, (req, res) => {
 })
 
 userRouter.get('/logout', auth, (req, res) => {
-  console.log('req.user-->', req.user)
   User.findOneAndUpdate({_id: req.user._id },
     {token: ""},
     (err, user) => {
