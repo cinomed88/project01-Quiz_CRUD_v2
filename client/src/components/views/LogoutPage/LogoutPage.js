@@ -1,19 +1,18 @@
 import { useEffect } from 'react'
-// import { useHistory } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../../_actions/user_action'
 
 function LogoutPage(props) {
-
-  // let history = useHistory();
+  const dispatch = useDispatch("")
 
   useEffect(() => {
-    axios.get('/api/v3/users/logout')
-    .then(res => {
-      console.log(res.data)
-      if(res.data.logoutSuccess) {
+    dispatch(logoutUser()).then(res => {
+      console.log(res.payload)
+      if(!res.payload.isAuth) {
         props.history.push('/login')
-    }})
+      }
+    })
   })
 
   return (
